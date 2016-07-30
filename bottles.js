@@ -1,26 +1,54 @@
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 class Bottles {
   verse(n) {
-    switch (n) {
-    case 0:
-      return "No more bottles of beer on the wall, " +
-        "no more bottles of beer.\n" +
-        "Go to the store and buy some more, " +
-        "99 bottles of beer on the wall.\n"
-    case 1:
-      return "1 bottle of beer on the wall, " +
-        "1 bottle of beer.\n" +
-        "Take it down and pass it around, " +
-        "no more bottles of beer on the wall.\n";
-    case 2:
-      return "2 bottles of beer on the wall, " +
-        "2 bottles of beer.\n" +
-        "Take one down and pass it around, " +
-        "1 bottle of beer on the wall.\n"
-    default:
-      return `${n} bottles of beer on the wall, ` +
-        `${n} bottles of beer.\n` +
-        "Take one down and pass it around, " +
-        `${n - 1} bottles of beer on the wall.\n`
+    return (
+      `${this.quantity(n).capitalize()} ${this.container(n)} of beer on the wall, ` +
+      `${this.quantity(n)} ${this.container(n)} of beer.\n` +
+      `${this.action(n)}, ` +
+      `${this.quantity(this.successor(n))} ${this.container(this.successor(n))} of beer on the wall.\n`
+    );
+  }
+
+  successor(n) {
+    if (n === 0) {
+      return 99;
+    } else {
+      return n - 1;
+    }
+  }
+
+  quantity(n) {
+    if (n === 0) {
+      return 'no more';
+    } else {
+      return n.toString();
+    }
+  }
+
+  pronoun(n) {
+    if (n == 1) {
+      return 'it';
+    } else {
+      return 'one';
+    }
+  }
+
+  container(n) {
+    if (n === 1) {
+      return 'bottle';
+    } else {
+      return 'bottles';
+    }
+  }
+
+  action(n) {
+    if (n === 0) {
+      return 'Go to the store and buy some more';
+    } else {
+      return `Take ${this.pronoun(n)} down and pass it around`;
     }
   }
 

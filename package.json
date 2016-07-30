@@ -4,10 +4,9 @@
   "description": "",
   "main": "bottles.js",
   "directories": {
-    "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u tdd"
   },
   "author": "",
   "license": "ISC",
